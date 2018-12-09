@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Favorites List</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="page-cards">
+    <ion-list>
+        <ion-card *ngFor="let rcp of (recipes$ | async) | favoriteFilter" (click)="pushPageDetails(rcp)">
+            <img src="../../assets/imgs/{{ rcp.id }}.jpg">
+            <div class="card-title">{{ rcp.name }}</div>
+            <div class="card-difficulty">{{ rcp.difficulty }}</div>
+            <div class="card-prepTime">{{ rcp.prepTime }} MIN</div>
+        </ion-card>
+    </ion-list>
+</ion-content>

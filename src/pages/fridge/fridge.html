@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Fridge</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="page-cards">
+    <ion-item>
+        <ion-label color="primary" floating>Filter by Ingredient...</ion-label>
+        <ion-input #ing type="text" clearOnEdit (keyup.enter)="addFilterIngredient(ing.value);ing.value=''" style="width: 100px"> </ion-input>
+        <button (click)="addFilterIngredient(ing.value);ing.value=''" ion-button large item-end>Add Filter</button>
+    </ion-item>
+
+    <ion-list *ngIf="ingredients.length > 0">
+      <span>Selected Filters:</span>
+      <div *ngFor="let ingredient of ingredients; index as i">
+        <button (click)="deleteFilterIngredient(i)"> X </button> <!-- change in X symbol-->
+        <span>{{ingredient}} </span>
+      </div>
+    </ion-list>
+    <ion-list>
+        <ion-card *ngFor="let rcp of recipes$ | async | containsFilter: ingredients" (click)="pushPageDetails(rcp)">
+            <img src="../../assets/imgs/{{ rcp.id }}.jpg">
+            <div class="card-title">{{ rcp.name }}</div>
+            <div class="card-difficulty">{{ rcp.difficulty }}</div>
+            <div class="card-prepTime">{{ rcp.prepTime }} MIN</div>
+        </ion-card>
+    </ion-list>
+</ion-content>

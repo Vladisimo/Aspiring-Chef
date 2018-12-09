@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Explore our Recipes
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar (ionInput)="getInput($event.target.value)" (ionCancel)="getInput()" [showCancelButton]="true"></ion-searchbar>
+
+    <ion-content class="page-cards">
+        <ion-list>
+            <ion-card *ngFor="let recipe of filter(recipes$ | async, searchQuery)" (click)="pushPageDetails(recipe)">
+                <img src="../../assets/imgs/{{ recipe.id }}.jpg">
+                <div class="card-title">{{ recipe.name }}</div>
+                <div class="card-difficulty">{{ recipe.difficulty }}</div>
+                <div class="card-prepTime">{{ recipe.prepTime }} MIN</div>
+            </ion-card>
+        </ion-list>
+    </ion-content>
+
+</ion-content>

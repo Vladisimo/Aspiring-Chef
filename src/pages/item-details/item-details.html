@@ -1,0 +1,49 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title> {{recipe.name}} </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <div class="container">
+
+        <img src="../../assets/imgs/{{ recipe.id }}.jpg">
+
+        <button *ngIf="recipe.favorite" ion-button icon-only round color="danger" class="btn" (click)="toggleFavorite()">
+            <ion-icon name="heart"></ion-icon>
+        </button>
+        <button *ngIf="!recipe.favorite" ion-button icon-only round class="btn" (click)="toggleFavorite()">
+            <ion-icon name="heart"></ion-icon>
+        </button>
+
+
+        <table>
+            <tr>
+                <th>TIME</th>
+                <th>DIFFICULTY</th>
+                <th>SERVES</th>
+                <th>KCAL</th>
+            </tr>
+
+            <tr>
+                <td>{{recipe.prepTime}} MINS</td>
+                <td>{{recipe.difficulty}}</td>
+                <td>{{recipe.serves}}</td>
+                <td>{{recipe.kcal}}</td>
+            </tr>
+        </table>
+
+        <h2>Ingredients</h2>
+        <ul>
+            <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+        </ul>
+
+        <h2>Method</h2>
+        <ol>
+            <li *ngFor="let meth of recipe.method">{{ meth }}</li>
+        </ol>
+    </div>
+</ion-content>
